@@ -1,6 +1,8 @@
 import pandas as pd
 import psycopg2
 from sqlalchemy import create_engine
+from sqlalchemy import text
+
 
 # Define your database credentials
 db_settings = {
@@ -45,12 +47,11 @@ schema = {
 }
 
 # Create an empty DataFrame with the specified schema
-df = pd.DataFrame({col: pd.Series(dtype=typ) for col, typ in schema.items()})
+df_schema = pd.DataFrame({col: pd.Series(dtype=typ) for col, typ in schema.items()})
 
-# Function to create the table if it doesn't exist
 def create_table(engine, table_name):
     with engine.connect() as conn:
-        create_query = f"""
+        create_query = text(f"""
         CREATE TABLE IF NOT EXISTS {table_name} (
             Fecha TIMESTAMP,
             Hora INT,
@@ -78,11 +79,12 @@ def create_table(engine, table_name):
             "Municipio (Inegi)" TEXT,
             "Region De Transmision" TEXT
         );
-        """
+        """)
         conn.execute(create_query)
 
+
 # Create the table
-table_name = "your_table_name"
+table_name = "CENACE_MECP_MDA_PML"
 create_table(engine, table_name)
 
 # Insert data into the table (assuming df is your DataFrame with data)
