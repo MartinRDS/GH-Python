@@ -18,7 +18,29 @@ engine = create_engine(conn_string)
 # Define the schema as a dictionary (from previous steps)
 schema = {
     "Fecha": "datetime64[ns]",
-    # ... (other column definitions) ...
+    "Hora": "int64",
+    "PML MDA ($/MWh)": "float64",
+    "Componente Energia MDA ($/MWh)": "float64",
+    "Componente Perdidas MDA ($/MWh)": "float64",
+    "Componente Congestion MDA ($/MWh)": "int64",
+    "Clave": "object",
+    "Sistema": "object",
+    "Centro De Control Regional": "object",
+    "Zona De Carga": "object",
+    "Nombre": "object",
+    "Nivel De Tensión (Kv)": "float64",
+    "Directamente Modelada": "object",
+    "Indirectamente Modelada": "object",
+    "Directamente Modelada 1": "object",
+    "Indirectamente Modelada 1": "object",
+    "Zona De Operación De Transmisión": "object",
+    "Gerencia Regional De Transmisión": "object",
+    "Zona De Distribución": "object",
+    "Gerencia Divisional De Distribución": "object",
+    "Clave De Entidad Federativa (Inegi)": "int64",
+    "Entidad Federativa (Inegi)": "object",
+    "Clave De Municipio (Inegi)": "int64",
+    "Municipio (Inegi)": "object",
     "Region De Transmision": "object"
 }
 
@@ -38,7 +60,22 @@ def create_table(engine, table_name):
             "Componente Congestion MDA ($/MWh)" INT,
             Clave TEXT,
             Sistema TEXT,
-            -- ... (other column definitions) ...
+            "Centro De Control Regional" TEXT,
+            "Zona De Carga" TEXT,
+            "Nombre" TEXT,
+            "Nivel De Tensión (Kv)" FLOAT,
+            "Directamente Modelada" TEXT,
+            "Indirectamente Modelada" TEXT,
+            "Directamente Modelada 1" TEXT,
+            "Indirectamente Modelada 1" TEXT,
+            "Zona De Operación De Transmisión" TEXT,
+            "Gerencia Regional De Transmisión" TEXT,
+            "Zona De Distribución" TEXT,
+            "Gerencia Divisional De Distribución" TEXT,
+            "Clave De Entidad Federativa (Inegi)" INT,
+            "Entidad Federativa (Inegi)" TEXT,
+            "Clave De Municipio (Inegi)" INT,
+            "Municipio (Inegi)" TEXT,
             "Region De Transmision" TEXT
         );
         """
