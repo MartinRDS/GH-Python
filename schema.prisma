@@ -1,0 +1,50 @@
+generator client {
+  provider             = "prisma-client-py"
+  interface            = "asyncio"
+  recursive_type_depth = "5"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model CENACE_MECP_MDA_PML {
+  Fecha                            DateTime
+  Hora                             Int
+  PML_MDA                          Float
+  ComponenteEnergia_MDA            Float
+  ComponentePerdidas_MDA           Float
+  ComponenteCongestion_MDA         Float
+  Clave                            String
+  Sistema                          String
+  CentroDeControlRegional          String
+  ZonaDeCarga                      String
+  Nombre                           String
+  NivelDeTension_kV                Float
+  DirectamenteModelada             String
+  IndirectamenteModelada           String
+  DirectamenteModelada1            String
+  IndirectamenteModelada1          String
+  ZonaDeOperacionDeTransmision     String
+  GerenciaRegionalDeTransmision    String
+  ZonaDeDistribucion               String
+  GerenciaDivisionalDeDistribucion String
+  ClaveDeEntidadFederativa_INEGI   Int
+  EntidadFederativa_INEGI          String
+  ClaveDeMunicipio_INEGI           Int
+  Municipio_INEGI                  String
+  RegionDeTransmision              String
+
+  @@id([Fecha, Hora, Clave])
+}
+
+model CENACE_MECP_MDA_PML_ErrorLog {
+  id      Int      @id @default(autoincrement())
+  date    DateTime
+  sistema String
+  mercado String
+  error   String
+  context String
+  nodo    String
+}
