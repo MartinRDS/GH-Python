@@ -22,7 +22,6 @@ def fetch_data_from_db(nodo, mercado, date):
                 'Fecha': date,
                 'Mercado': mercado,
             },
-            execute=True,
         )
         
         if records:
@@ -156,3 +155,5 @@ for nodo, attributes in nodos_dict.items():
             fetched_data = fetch_data_from_api(nodo, mercado, datetime.strptime(date, '%Y-%m-%d'), sistema, nodos_dict)
             if fetched_data:
                 save_to_db(fetched_data, mercado)
+                
+client.cenace_mecp_mda_pml
